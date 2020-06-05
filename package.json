@@ -27,7 +27,7 @@
 		"commands": [
 			{
 				"command": "create-link-to-git-server.helloWorld",
-				"title": "Get Link"
+				"title": "Get link to Git server"
 			}
 		]
 	},
