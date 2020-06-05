@@ -22,13 +22,7 @@
 					"command": "create-link-to-git-server.helloWorld"
 				}
 			]
-		},
-		"commands": [
-			{
-				"command": "create-link-to-git-server.helloWorld",
-				"title": "Get Link to this line"
-			}
-		]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
