@@ -4,6 +4,7 @@
 	"description": "Create a link to a specific line directly from the file you're looking at.",
 	"version": "0.0.1",
 	"publisher": "musikele",
+	"repository": "https://github.com/musikele/create-link-to-git-server",
 	"engines": {
 		"vscode": "^1.45.0"
 	},
