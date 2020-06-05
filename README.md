@@ -22,6 +22,6 @@ Let me know on github if there are any issues.
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.2
 
-First version. 
+first working version
