@@ -1,6 +1,8 @@
 # create-link-to-git-server README
 
-Easily share a link to VSC website of a line of your code. 
+Easily share a link to VSC website of a line of your code: right click on a line in an editor, an click the item "Get link to this line". 
+
+![Example](demo1.png)
 
 Github repo: `https://github.com/musikele/create-link-to-git-server` 
 
