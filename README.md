@@ -18,7 +18,6 @@ I still do not know if there are any issues.
 
 ## Release Notes
 
-first version 
-
 ### 1.0.0
 
+First version. 
