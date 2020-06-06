@@ -24,9 +24,11 @@ export function activate(context: vscode.ExtensionContext) {
 			[0];
 
 		const remoteUrl = getRemoteUrl(fetchUrl);
-		const projectGroup = getProjectGroup(fetchUrl); 
+		const projectGroup = getProjectGroup(fetchUrl);
 		const projectName = getProjectName(fetchUrl);
-		const filename = textEditor.document.fileName.replace(vscode.workspace.rootPath || '', '');
+		const filename = textEditor.document.fileName
+			.replace(vscode.workspace.rootPath || '', '')
+			.replace('\\', '/');
 		const shareableLink = `${remoteUrl}/${projectGroup}/${projectName}/blob/${branch}${filename}#L${textEditor.selection.start.line+1}`;
 
 		vscode.env.clipboard.writeText(shareableLink);
@@ -39,13 +41,36 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {}
 
 function getRemoteUrl(fetchUrl: string): string {
-	return 'https://' + fetchUrl.slice(fetchUrl.indexOf('@')+1, fetchUrl.indexOf(':'));
+	console.log(fetchUrl.startsWith('git'));
+	if (fetchUrl.startsWith('git')) {
+		return 'https://' + fetchUrl.slice(fetchUrl.indexOf('@')+1, fetchUrl.indexOf(':'));
+	} else if (fetchUrl.startsWith('https')) {
+		const afterHttps = fetchUrl.split('//')[1];
+		const remoteHost = afterHttps.split('/')[0];
+		return 'https://' + remoteHost;
+	} 
+	return '';
 }
 
 function getProjectGroup(fetchUrl:string): string {
-	return fetchUrl.slice(fetchUrl.indexOf(':')+1, fetchUrl.indexOf('/'));
+	if (fetchUrl.startsWith('git')) {
+		return fetchUrl.slice(fetchUrl.indexOf(':')+1, fetchUrl.indexOf('/'));
+	}
+	else if (fetchUrl.startsWith('https')) {
+		const afterHttps = fetchUrl.split('//')[1];
+		const projectGroup = afterHttps.split('/')[1];
+		return projectGroup;
+	}
+	return '';
 }
 
 function getProjectName(fetchUrl:string):string {
-	return fetchUrl.slice(fetchUrl.indexOf('/')+1, -4);
+	if (fetchUrl.startsWith('git')) {
+		return fetchUrl.slice(fetchUrl.indexOf('/')+1, -4);
+	} else if (fetchUrl.startsWith('https')) {
+		const afterHttps = fetchUrl.split('//')[1];
+		const projectName = afterHttps.split('/')[2].slice(0, -4);
+		return projectName;	
+	}
+	return '';
 }
