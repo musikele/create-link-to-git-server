@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const shareableLink = `${remoteUrl}/${projectGroup}/${projectName}/blob/${branch}${filename}#L${textEditor.selection.start.line+1}`;
 
 		vscode.env.clipboard.writeText(shareableLink);
-		vscode.window.showInformationMessage(shareableLink);
+		vscode.window.showInformationMessage('Link copied in clipboard.');
 	});
 
 	context.subscriptions.push(disposable);
