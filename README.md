@@ -26,6 +26,10 @@ Let me know on github if there are any issues.
 
 ## Release Notes
 
+### 1.0.1
+
+Change information message.
+
 ### 1.0.0 
 
 Support for Https repositories too. 
