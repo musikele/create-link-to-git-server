@@ -2,7 +2,7 @@
 	"name": "create-link-to-git-server",
 	"displayName": "Create link to git server",
 	"description": "Create a link to a specific line directly from the file you're looking at.",
-	"version": "0.0.3",
+	"version": "1.0.1",
 	"publisher": "musikele",
 	"repository": "https://github.com/musikele/create-link-to-git-server",
 	"engines": {
