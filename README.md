@@ -30,7 +30,7 @@ Let me know on github if there are any issues.
 
 Change information message.
 
-### 1.0.0 
+### 1.0.0
 
 Support for Https repositories too. 
 
