@@ -47,7 +47,7 @@ function getRemoteUrl(fetchUrl: string): string {
 	} else if (fetchUrl.startsWith('https')) {
 		const afterHttps = fetchUrl.split('//')[1];
 		const remoteHost = afterHttps.split('/')[0];
-		return 'https://' + remoteHost;
+		return 'https://' + remoteHost; 
 	} 
 	return '';
 }
@@ -64,7 +64,7 @@ function getProjectGroup(fetchUrl:string): string {
 	return '';
 }
 
-function getProjectName(fetchUrl:string):string {
+function getProjectName(fetchUrl:string):string { 
 	if (fetchUrl.startsWith('git')) {
 		return fetchUrl.slice(fetchUrl.indexOf('/')+1, -4);
 	} else if (fetchUrl.startsWith('https')) {
