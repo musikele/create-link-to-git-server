@@ -6,7 +6,7 @@ Some may argue that gitLens is already doing this, but to be precise, there are 
 - gitLens doesn't work with private/custom it servers. 
 - gitlens links to commits, while this extension links to remotes/branches. 
 
-![Example](demo1.gif)
+![Example](demo.gif)
 
 Github repo: `https://github.com/musikele/create-link-to-git-server` 
 
@@ -25,6 +25,10 @@ No settings needed.
 Let me know on github if there are any issues. 
 
 ## Release Notes
+
+### 1.0.3
+
+Gif was not working, fixing the link! 
 
 ### 1.0.2 
 
