@@ -29,6 +29,16 @@ function getWorkspaceFolderOfActiveFile(): vscode.WorkspaceFolder | undefined {
   return workspaceFolder;
 }
 
+function getRepositoryForActiveFile(api: any): any | undefined {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) return undefined;
+  const filePath = editor.document.uri.fsPath;
+
+  return api.repositories.find((repo: any) =>
+    filePath.startsWith(repo.rootUri.fsPath)
+  );
+}
+
 export const action = (
   textEditor: vscode.TextEditor,
   edit: vscode.TextEditorEdit
@@ -42,23 +52,17 @@ export const action = (
   const isWorkspace = api.repositories.length > 1;
 
   if (!activeWorkspace) {
-    vscode.window.showInformationMessage(
-      'No workspace folder found for the active file.'
-    );
-    return;
+    const activeWorkspaceError =
+      'No workspace folder found for the active file.';
+    vscode.window.showInformationMessage(activeWorkspaceError);
+    throw new Error(activeWorkspaceError);
   }
 
   const remotes: Remote[] = api.repositories.flatMap(
     (repo: Repository) => repo.state.remotes
   );
 
-  const repository: Repository = api.repositories.find((repo: Repository) => {
-    const remotes = repo.state.remotes;
-    return remotes.some(
-      (remote: Remote) =>
-        remote.fetchUrl.indexOf(`${activeWorkspace.name}.git`) > -1
-    );
-  });
+  const repository: Repository = getRepositoryForActiveFile(api);
 
   const currentRemote = repository?.state.HEAD?.upstream?.remote;
   if (!currentRemote) {
